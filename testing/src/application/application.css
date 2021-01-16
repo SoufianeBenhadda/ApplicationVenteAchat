@@ -1,0 +1,36 @@
+#vbox{
+	-fx-background-color: #5C0347;
+}
+.button{
+	-fx-background-color: #5C0347;
+	-fx-font-size: 18;
+	-fx-text-fill: white;
+}
+.button:hover{
+	-fx-background-color: #74065A;
+	-fx-font-size: 18;
+	-fx-text-fill: white;
+}
+.table-column{
+	-fx-background-color: #930374;
+}
+  .label{
+    -fx-text-fill: white;
+}
+#pane2{
+	-fx-background-color: #930374;
+}
+
+#textpane{
+	-fx-background-color: #930374;
+	-fx-text-fill: white;
+	-fx-font-size: 30;
+}
+#textfieldprod{
+	-fx-text-box-border: #930374;
+	-fx-focus-color: #930374;
+}
+#labelprod{
+	    -fx-text-fill: black;
+	    	-fx-font-size: 18;
+}
