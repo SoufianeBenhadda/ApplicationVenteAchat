@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
 
-import com.sun.glass.events.MouseEvent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

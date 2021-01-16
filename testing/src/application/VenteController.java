@@ -5,16 +5,20 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
 
-import com.jfoenix.controls.JFXTextField;
+
+
+
 import com.mysql.jdbc.PreparedStatement;
-import com.sun.glass.events.KeyEvent;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -69,6 +73,9 @@ public class VenteController {
 	    private TextField tfclient;
 	    @FXML
 	    private TextField tfquantiteproduit;
+	    @FXML
+	    private DatePicker tfventejour;
+
 	    
 	    @FXML
 	    private void initialize() throws SQLException {
@@ -78,7 +85,19 @@ public class VenteController {
 	    void handleAddButton() throws NumberFormatException, SQLException {
 	    	addVente();
 	    }
-
+	    
+	    @FXML
+	    void handleModifierButton() {
+	    	updateVente();
+	    }
+	    @FXML
+	    void handleSupprimerButton() {
+	    	deleteVente();
+	    }
+	    @FXML
+	    void handleSearchButton() {
+	    	venteJour();
+	    }
 	    @FXML
 		private void handleMouseAction() {
 			Vente vente = tvvente.getSelectionModel().getSelectedItem();
@@ -87,6 +106,12 @@ public class VenteController {
 			tfclient.setText(""+vente.getClient());
 			tfprixdevente.setText(""+vente.getPrixVente());
 			tfquantite.setText(""+vente.getQuantite());
+			
+			tfidproduit.setEditable(false);
+			tfproduit.setEditable(false);
+			tfprixachat.setEditable(false);
+
+
 		//	tfprixachat.setText(""+vente.get());
 
 		}
@@ -191,6 +216,59 @@ public class VenteController {
 	        }        		       
 	        showVentes();
 	        
+	    }
+	    
+	    private void updateVente() {
+	    
+	            String query = "UPDATE  vente SET client  = '" + tfclient.getText() + "', prixVente = '" + tfprixdevente.getText() + "', quantite = " +
+	                    tfquantite.getText() + " WHERE id = " + tfidproduit.getText() + "";
+	            SqlConnection.executeQuery(query);
+	            showVentes();
+	    }
+	    private void deleteVente(){  	
+	    	Vente vente = tvvente.getSelectionModel().getSelectedItem();
+	    	String query = "DELETE FROM vente WHERE id = " + vente.getId() + "";
+	    	SqlConnection.executeQuery(query);
+	    	showVentes();
+	    }
+	    
+	    public ObservableList<Vente> getVenteJourList(){
+	        ObservableList<Vente> venteJourList = FXCollections.observableArrayList();
+	        Connection conn = SqlConnection.getConnection();
+	    	LocalDate localDate = tfventejour.getValue();
+	        String query = "SELECT * FROM vente WHERE dateVente = '"+ localDate + "'";
+	        Statement st;
+	        ResultSet rs;
+	        
+	        try{
+	            st = conn.createStatement();
+	            rs = st.executeQuery(query);	          
+	            Vente vente;
+	            while(rs.next()){
+	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getString("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
+	            	venteJourList.add(vente);
+	            }
+	        }catch(Exception ex){
+	            ex.printStackTrace();
+	        }
+	        return venteJourList;
+	    }
+	    @FXML
+	    private void venteJour() {
+	    
+	    	ObservableList<Vente> list = getVenteJourList();
+			idventecol.setCellValueFactory(new PropertyValueFactory<Vente , Integer>("id"));
+			produitcol.setCellValueFactory(new PropertyValueFactory<Vente , String>("produit"));
+			clientcol.setCellValueFactory(new PropertyValueFactory<Vente , String>("client"));
+			quantitecol.setCellValueFactory(new PropertyValueFactory<Vente , Integer>("quantite"));
+			prixdeventecol.setCellValueFactory(new PropertyValueFactory<Vente , Float>("prixVente"));
+			datecol.setCellValueFactory(new PropertyValueFactory<Vente , java.sql.Date>("dateVente"));
+			totalcol.setCellValueFactory(new PropertyValueFactory<Vente , Double>("total"));
+			benificecol.setCellValueFactory(new PropertyValueFactory<Vente , Float>("benifice"));
+
+	        tvvente.setItems(list);
+	        
+	    	
 	    }
 	    
 	    
