@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="allpanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="1000.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AcceuilController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AcceuilController">
    <children>
       <VBox id="vbox" prefHeight="576.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -45,7 +45,7 @@
                </graphic>
             </Button>
             <Separator prefWidth="200.0" />
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="148.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" text="Vente" textAlignment="CENTER" textFill="WHITE" translateX="1.0">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="148.0" mnemonicParsing="false" onAction="#salesAction" prefHeight="60.0" prefWidth="258.0" text="Vente" textAlignment="CENTER" textFill="WHITE" translateX="1.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -114,9 +114,14 @@
             <Separator prefWidth="200.0" />
          </children>
       </VBox>
-      <Pane id="pane2" layoutX="258.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="129.0" prefWidth="742.0" AnchorPane.leftAnchor="258.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="allpanel" layoutX="257.0" layoutY="-1.0" minWidth="-Infinity" prefHeight="700.0" prefWidth="944.0" AnchorPane.leftAnchor="256.0">
          <children>
-            <Label id="textpane" layoutX="105.0" layoutY="32.0" prefHeight="47.0" prefWidth="98.0" text="Acceuil" />
-         </children></Pane>
+            <Pane id="pane2" minHeight="-Infinity" minWidth="-Infinity" prefHeight="129.0" prefWidth="944.0">
+               <children>
+                  <Label id="textpane" layoutX="105.0" layoutY="32.0" prefHeight="47.0" prefWidth="98.0" text="Acceuil" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

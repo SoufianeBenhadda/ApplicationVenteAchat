@@ -27,6 +27,11 @@ public class AcceuilController {
     	AnchorPane pane = FXMLLoader.load(getClass().getResource("Achat.fxml"));
 		allpanel.getChildren().setAll(pane);				
 	}
+	@FXML
+    private void salesAction() throws IOException {
+    	AnchorPane pane = FXMLLoader.load(getClass().getResource("vente.fxml"));
+		allpanel.getChildren().setAll(pane);
+    }
 
 
 }
