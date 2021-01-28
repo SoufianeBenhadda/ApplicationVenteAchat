@@ -7,6 +7,7 @@ import java.sql.Statement;
 public class SqlConnection {
 	public static Connection getConnection(){
         Connection conn;
+       
         try{
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gestion", "root","");
             return conn;

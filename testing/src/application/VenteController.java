@@ -8,13 +8,6 @@ import java.sql.Statement;
 import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
-
-
-
-
-import com.mysql.jdbc.PreparedStatement;
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -75,6 +68,8 @@ public class VenteController {
 	    private TextField tfquantiteproduit;
 	    @FXML
 	    private DatePicker tfventejour;
+	    
+
 
 	    
 	    @FXML
@@ -82,7 +77,7 @@ public class VenteController {
 	    	showVentes();	    	
 	    	}
 	    @FXML
-	    void handleAddButton() throws NumberFormatException, SQLException {
+	    void handleAddButton() throws SQLException {
 	    	addVente();
 	    }
 	    
@@ -101,11 +96,11 @@ public class VenteController {
 	    @FXML
 		private void handleMouseAction() {
 			Vente vente = tvvente.getSelectionModel().getSelectedItem();
-			tfidproduit.setText(""+vente.getId());
+			
 			tfproduit.setText(vente.getProduit());
 			tfclient.setText(""+vente.getClient());
 			tfprixdevente.setText(""+vente.getPrixVente());
-			tfquantite.setText(""+vente.getQuantite());
+			tfquantiteproduit.setText(""+vente.getQuantite());
 			
 			tfidproduit.setEditable(false);
 			tfproduit.setEditable(false);
@@ -117,7 +112,7 @@ public class VenteController {
 		}
 	    
 	    @FXML
-	    void purchase() throws NumberFormatException, SQLException {
+	    void purchase() throws SQLException {
 	    	
 	    	Connection conn = SqlConnection.getConnection();	    	
 	    	String select = "SELECT * FROM article WHERE id = "+ tfidproduit.getText()+"";
@@ -131,11 +126,12 @@ public class VenteController {
 	        else {
 	        	String product = rs.getString("nom_article");   	       
 	        	String prixachat =""+rs.getFloat("prix");   
-	        	String quantiteproduit =""+rs.getInt("quantite");  
+	        	
 
 	        	tfproduit.setText(product);
 	        	tfprixachat.setText(prixachat);
-	        	tfquantiteproduit.setText(quantiteproduit);
+	        	
+	        	
 	        }
 	    }
 	    
@@ -153,6 +149,7 @@ public class VenteController {
 	            while(rs.next()){
 	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getString("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
 	                venteList.add(vente);
+	                
 	            }
 	        }catch(Exception ex){
 	            ex.printStackTrace();
@@ -176,7 +173,7 @@ public class VenteController {
 
 		}
 	    
-	    private void addVente() throws SQLException, NumberFormatException {
+	    private void addVente() throws SQLException {
 	    
 	    	Connection conn = SqlConnection.getConnection();   	
 	    	String select = "SELECT * FROM article WHERE id = "+ tfidproduit.getText() +"";
@@ -191,7 +188,7 @@ public class VenteController {
 
 	        	
 	        	float prixVente = Float.parseFloat(tfprixdevente.getText());		        
-	 	    	int quantiteVente = Integer.parseInt(tfquantite.getText());  
+	 	    	int quantiteVente = Integer.parseInt(tfquantiteproduit.getText());  
 	 	    	
 	 	        double total = prixVente * quantiteVente;
 	 	        float benifice = (float)(total - (quantiteVente * prixachat)) ;
@@ -209,9 +206,9 @@ public class VenteController {
 	 	        
 	 	       java.util.Date date=new java.util.Date();
 	 	       java.sql.Date sqlDate=new java.sql.Date(date.getTime());	
-	 	       String query1 = "INSERT INTO vente VALUES (" + tfidproduit.getText() + ",'" + tfproduit.getText() + "','" + tfclient.getText() + "',"
-		               + tfquantite.getText() + "," + tfprixdevente.getText() + ",'" + sqlDate + "'," + total + "," + benifice + ")";
-	     
+	 	       String query1 = "INSERT INTO vente (article,client,prixVente,quantite,dateVente,total,benifice,isFacture) VALUES ('" + tfproduit.getText() + "','" + tfclient.getText() + "',"
+		               + tfprixdevente.getText() + "," + tfquantiteproduit.getText() + ",'" + sqlDate + "'," + total + "," + benifice + ",false)";
+	 	       System.out.println(query1);
 		        SqlConnection.executeQuery(query1);	        
 	        }        		       
 	        showVentes();
@@ -219,9 +216,9 @@ public class VenteController {
 	    }
 	    
 	    private void updateVente() {
-	    
+	    	Vente vente = tvvente.getSelectionModel().getSelectedItem();
 	            String query = "UPDATE  vente SET client  = '" + tfclient.getText() + "', prixVente = '" + tfprixdevente.getText() + "', quantite = " +
-	                    tfquantite.getText() + " WHERE id = " + tfidproduit.getText() + "";
+	                    tfquantiteproduit.getText() + " WHERE id = " + vente.getId() + "";
 	            SqlConnection.executeQuery(query);
 	            showVentes();
 	    }
@@ -270,6 +267,9 @@ public class VenteController {
 	        
 	    	
 	    }
+	    
+
+	    
 	    
 	    
 	    

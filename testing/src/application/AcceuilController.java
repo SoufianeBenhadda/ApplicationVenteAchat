@@ -20,8 +20,11 @@ public class AcceuilController {
 	private Button btn_acceuil;
 	@FXML
 	private Button btn_achat;
+	@FXML
+    private AnchorPane facturePane;
 
-	// Event Listener on Button[#btn_achat].onAction
+
+	 
 	@FXML
 	public void handleButtonAction() throws IOException {			
     	AnchorPane pane = FXMLLoader.load(getClass().getResource("Achat.fxml"));
@@ -32,6 +35,12 @@ public class AcceuilController {
     	AnchorPane pane = FXMLLoader.load(getClass().getResource("vente.fxml"));
 		allpanel.getChildren().setAll(pane);
     }
-
+	@FXML
+	public void handleFacturationAction() throws IOException {			
+    	AnchorPane pane = FXMLLoader.load(getClass().getResource("facturation.fxml"));
+		allpanel.getChildren().setAll(pane);			
+	}
+	
+	
 
 }

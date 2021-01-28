@@ -48,11 +48,11 @@
             <Label text="Quantite" GridPane.columnIndex="4" />
             <Label text="Client" GridPane.columnIndex="5" />
             <Label text="Prix d'achat" GridPane.columnIndex="2" />
-            <TextField fx:id="tfidproduit" GridPane.rowIndex="1" />
+            <TextField fx:id="tfidproduit" onKeyPressed="#purchase" GridPane.rowIndex="1" />
             <TextField fx:id="tfproduit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfprixachat" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="tfprixdevente" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="tfquantite" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="tfquantiteproduit" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="tfclient" GridPane.columnIndex="5" GridPane.rowIndex="1" />
          </children>
       </GridPane>

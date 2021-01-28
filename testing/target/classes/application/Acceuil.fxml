@@ -80,7 +80,7 @@
                </padding>
             </Button>
             <Separator prefWidth="200.0" />
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="192.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="258.0" text="Stock" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleFacturationAction" prefHeight="60.0" prefWidth="258.0" text="Facturation" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

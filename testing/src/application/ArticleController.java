@@ -88,8 +88,6 @@ public class ArticleController implements Initializable {
 	}
 	
 	
-	
-	
 	  public ObservableList<Article> getArticleList(){
 	        ObservableList<Article> articleList = FXCollections.observableArrayList();
 	        Connection conn = SqlConnection.getConnection();

@@ -13,8 +13,12 @@ public class Vente {
 	private Date dateVente;
 	private double total;
 	private float benifice;
+	
 	public int getId() {
 		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getProduit() {
 		return produit;
@@ -22,9 +26,7 @@ public class Vente {
 	public void setProduit(String produit) {
 		this.produit = produit;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	
 	@Override
 	public String toString() {
