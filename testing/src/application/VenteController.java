@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javafx.collections.FXCollections;
@@ -17,6 +19,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class VenteController {
 	 @FXML
@@ -68,9 +79,8 @@ public class VenteController {
 	    private TextField tfquantiteproduit;
 	    @FXML
 	    private DatePicker tfventejour;
-	    
-
-
+	   
+	
 	    
 	    @FXML
 	    private void initialize() throws SQLException {
@@ -269,8 +279,6 @@ public class VenteController {
 	    }
 	    
 
-	    
-	    
 	    
 	    
 	    

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="600" pageHeight="400" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables">
 		<![CDATA[Z2VzdGlvbi52ZW50ZSBBUyAsODYsNTEsMjQ3MGRlNWQtMGU5MC00N2M5LWJjMjItMWMwMmRkMTM2
 Y2VmOw==]]>
@@ -61,6 +61,9 @@ Y2VmOw==]]>
 			<![CDATA[]]>
 		</queryString>
 	</subDataset>
+	<parameter name="balance" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[$P{balance}]]></defaultValueExpression>
+	</parameter>
 	<queryString language="SQL">
 		<![CDATA[SELECT gestion.vente.id,
 	gestion.vente.article,
@@ -133,7 +136,7 @@ FROM gestion.vente]]>
 	<title>
 		<band height="132" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="90" width="61" height="25" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
+				<reportElement x="29" y="85" width="61" height="25" uuid="57aed2b1-4f4e-40a3-a6ad-54dae8dd4c5a">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -149,27 +152,27 @@ FROM gestion.vente]]>
 				</reportElement>
 			</line>
 			<staticText>
-				<reportElement x="415" y="10" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
+				<reportElement x="422" y="5" width="50" height="20" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Date:]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="465" y="10" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<reportElement x="472" y="5" width="84" height="20" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="465" y="30" width="84" height="20" uuid="3836ce65-eca3-4cad-a6de-b1818def0a2b"/>
+				<reportElement x="472" y="25" width="84" height="20" uuid="3836ce65-eca3-4cad-a6de-b1818def0a2b"/>
 				<textFieldExpression><![CDATA["INV0001"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="415" y="30" width="50" height="20" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
+				<reportElement x="422" y="25" width="50" height="20" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
 				<box rightPadding="4"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Invoice #]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+				<reportElement x="0" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -179,19 +182,19 @@ FROM gestion.vente]]>
 				<text><![CDATA[Your company name]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="55" width="205" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
+				<reportElement x="0" y="55" width="205" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
 				<text><![CDATA[Phone number, web address, ecc.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="25" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<reportElement x="0" y="25" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
 				<text><![CDATA[Street address]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="40" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
+				<reportElement x="0" y="40" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
 				<text><![CDATA[City, street, ZIP code]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="61" y="95" width="120" height="20" uuid="7d87087c-375a-4aa7-81e3-5da397902945">
+				<reportElement style="Detail" positionType="Float" x="90" y="90" width="120" height="20" uuid="7d87087c-375a-4aa7-81e3-5da397902945">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a26b3fd7-8140-42dd-80a1-a4e55b16fab5"/>
 				</reportElement>
 				<textElement>
@@ -282,9 +285,9 @@ FROM gestion.vente]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="50">
+		<band height="99">
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="315" y="1" width="90" height="20" forecolor="#000000" uuid="e860bc09-5a30-4377-88c6-cde4a6cc25d9">
+				<reportElement style="Column header" positionType="Float" x="300" y="1" width="90" height="20" forecolor="#000000" uuid="e860bc09-5a30-4377-88c6-cde4a6cc25d9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="776636ec-5acf-4144-b05f-d54ba120a7bb"/>
 				</reportElement>
 				<textElement>
@@ -293,7 +296,7 @@ FROM gestion.vente]]>
 				<text><![CDATA[Total amount]]></text>
 			</staticText>
 			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
-				<reportElement style="Detail" positionType="Float" x="422" y="1" width="61" height="20" uuid="e469c812-df3a-4f78-b500-66ca63fa64fa">
+				<reportElement style="Detail" positionType="Float" x="427" y="1" width="61" height="20" uuid="e469c812-df3a-4f78-b500-66ca63fa64fa">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="776636ec-5acf-4144-b05f-d54ba120a7bb"/>
 				</reportElement>
 				<textElement>
@@ -307,6 +310,32 @@ FROM gestion.vente]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="300" y="30" width="90" height="20" forecolor="#000000" uuid="1c81b0e2-09b0-499a-a1c8-8d71affbf4b4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="776636ec-5acf-4144-b05f-d54ba120a7bb"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="427" y="30" width="100" height="30" uuid="93ea5b5e-4118-4ea9-8ff2-561edaade8c9"/>
+				<textFieldExpression><![CDATA[$P{balance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="300" y="60" width="90" height="20" forecolor="#000000" uuid="067b3d54-70a1-4e6b-9dbd-3247cbbbb907">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="776636ec-5acf-4144-b05f-d54ba120a7bb"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Retenu]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="427" y="60" width="100" height="30" uuid="43dd73e3-3fd7-4113-9b90-62a2e1f78874"/>
+				<textFieldExpression><![CDATA[$P{balance}-$V{totalAmount}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnFooter>
 </jasperReport>
