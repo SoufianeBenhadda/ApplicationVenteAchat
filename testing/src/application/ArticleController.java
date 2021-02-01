@@ -1,6 +1,10 @@
 package application;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +15,12 @@ import java.text.SimpleDateFormat;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import com.mysql.cj.jdbc.Blob;
+
 import javafx.scene.Node;
 
 
@@ -28,6 +38,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class ArticleController implements Initializable {
@@ -59,6 +71,32 @@ public class ArticleController implements Initializable {
 	private Button btnModifier;
 	@FXML
 	private Button btnSupprimer;
+	@FXML 
+	private Button addimg;
+	@FXML 
+	private ImageView imgview;
+	String s;
+	@FXML
+	public void imageselect() throws FileNotFoundException{
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = fileChooser.getSelectedFile();
+            String path = selectedFile.getPath();
+     
+            s=path;
+            System.out.println(s);
+            InputStream stream = new FileInputStream(path);
+            Image image = new Image(stream);
+            imgview.setImage(image);
+             }
+        else if(result == JFileChooser.CANCEL_OPTION){
+            System.out.println("No Data");
+        }
+    }
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -66,7 +104,7 @@ public class ArticleController implements Initializable {
 	}
 	
 	@FXML
-	private void handleButtonAction(ActionEvent event) {
+	private void handleButtonAction(ActionEvent event) throws FileNotFoundException, SQLException {
 		
 		if(event.getSource() == btnAjouter) {
 			addArticle();
@@ -79,12 +117,22 @@ public class ArticleController implements Initializable {
 		}
 	}
 	@FXML
-	private void handleMouseAction() {
+	private void handleMouseAction() throws SQLException {
 		Article article = tvGestion.getSelectionModel().getSelectedItem();
 		tfId.setText(""+article.getId());
 		tfArticle.setText(article.getNom_article());
 		tfQuantite.setText(""+article.getQuantite());
 		tfPrix.setText(""+article.getPrix());
+		Connection conn = SqlConnection.getConnection();	    	
+		
+		Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM article WHERE id = "+article.getId()+"");
+       
+        if (rs.next()) {
+            InputStream in = rs.getBinaryStream("image_article");
+            Image imge = new Image(in);
+            imgview.setImage(imge);
+        }
 	}
 	
 	
@@ -100,7 +148,7 @@ public class ArticleController implements Initializable {
 	            rs = st.executeQuery(query);
 	            Article Article;
 	            while(rs.next()){
-	                Article = new Article(rs.getInt("id"), rs.getString("nom_article"), rs.getFloat("prix"), rs.getInt("quantite"), rs.getDate("created_at"));
+	                Article = new Article(rs.getInt("id"), rs.getString("nom_article"), rs.getFloat("prix"), rs.getInt("quantite"), rs.getDate("created_at"), rs.getString("image_article"));
 	                articleList.add(Article);
 	            }
 	                
@@ -121,12 +169,30 @@ public class ArticleController implements Initializable {
 
 	}
 	
-	private void addArticle(){
+	private void addArticle() throws FileNotFoundException, SQLException{
 		java.util.Date date=new java.util.Date();
 		java.sql.Date sqlDate=new java.sql.Date(date.getTime());
-        String query = "INSERT INTO article VALUES (" + tfId.getText() + ",'" + tfArticle.getText() + "','" + tfPrix.getText() + "',"
-                + tfQuantite.getText() + ",'" + sqlDate + "')";
-        SqlConnection.executeQuery(query);
+		File monImage = new File(s);
+	    FileInputStream istreamImage = new FileInputStream(monImage);
+        //String query = "INSERT INTO article VALUES (" + tfId.getText() + ",'" + tfArticle.getText() + "','" + tfPrix.getText() + "',"
+          //      + tfQuantite.getText() + ",'" + sqlDate + "','" + istreamImage + "')";
+        //SqlConnection.executeQuery(query);
+	    Connection conn = SqlConnection.getConnection();	    	
+	    PreparedStatement pre =
+	    	       conn.prepareStatement("insert into article values(?,?,?,?,?,?)");
+
+       	Statement st = conn.createStatement();
+       	pre.setInt(1, Integer.parseInt(tfId.getText()));
+       	pre.setString(2, tfArticle.getText());
+       	pre.setFloat(3, Float.parseFloat(tfPrix.getText()));
+    	pre.setInt(4, Integer.parseInt(tfQuantite.getText()));
+    	pre.setDate(5, sqlDate);
+    	pre.setBinaryStream(6,(InputStream)istreamImage,(int)monImage.length());
+    	pre.executeUpdate();
+        System.out.println("Successfully inserted the file into the database!");
+
+        pre.close();
+        conn.close(); 
         showArticles();
     }
     private void updateArticle(){

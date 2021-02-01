@@ -7,7 +7,7 @@ public class Vente {
 	
 	public String produit;
 
-	private String client;
+	private int client;
 	private float prixVente;
 	private int quantite;
 	private Date dateVente;
@@ -34,10 +34,10 @@ public class Vente {
 				+ ", quantite=" + quantite + ", dateVente=" + dateVente + ", total=" + total + ", benifice=" + benifice
 				+ "]";
 	}
-	public String getClient() {
+	public int getClient() {
 		return client;
 	}
-	public void setClient(String client) {
+	public void setClient(int client) {
 		this.client = client;
 	}
 	public float getPrixVente() {
@@ -70,7 +70,7 @@ public class Vente {
 	public void setBenifice(float benifice) {
 		this.benifice = benifice;
 	}
-	public Vente(int id, String produit, String client, float prixVente, int quantite, Date dateVente, double total,
+	public Vente(int id, String produit, int client, float prixVente, int quantite, Date dateVente, double total,
 			float benifice) {
 		super();
 		this.id = id;

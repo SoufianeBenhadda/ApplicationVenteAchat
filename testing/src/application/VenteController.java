@@ -157,7 +157,7 @@ public class VenteController {
 	            rs = st.executeQuery(query);
 	            Vente vente;
 	            while(rs.next()){
-	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getString("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
+	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getInt("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
 	                venteList.add(vente);
 	                
 	            }
@@ -216,7 +216,7 @@ public class VenteController {
 	 	        
 	 	       java.util.Date date=new java.util.Date();
 	 	       java.sql.Date sqlDate=new java.sql.Date(date.getTime());	
-	 	       String query1 = "INSERT INTO vente (article,client,prixVente,quantite,dateVente,total,benifice,isFacture) VALUES ('" + tfproduit.getText() + "','" + tfclient.getText() + "',"
+	 	       String query1 = "INSERT INTO vente (article,client,prixVente,quantite,dateVente,total,benifice,isFacture) VALUES ('" + tfproduit.getText() + "'," + tfclient.getText() + ","
 		               + tfprixdevente.getText() + "," + tfquantiteproduit.getText() + ",'" + sqlDate + "'," + total + "," + benifice + ",false)";
 	 	       System.out.println(query1);
 		        SqlConnection.executeQuery(query1);	        
@@ -252,7 +252,7 @@ public class VenteController {
 	            rs = st.executeQuery(query);	          
 	            Vente vente;
 	            while(rs.next()){
-	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getString("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
+	            	vente = new Vente(rs.getInt("id"), rs.getString("article"), rs.getInt("client"), rs.getFloat("prixVente"),rs.getInt("quantite"), rs.getDate("dateVente"),rs.getDouble("total"),rs.getFloat("benifice"));
 	            	venteJourList.add(vente);
 	            }
 	        }catch(Exception ex){

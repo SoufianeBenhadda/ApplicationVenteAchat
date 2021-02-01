@@ -20,7 +20,7 @@
         <columns>
           <TableColumn fx:id="idventecol" prefWidth="51.0" text="idVente" />
           <TableColumn fx:id="produitcol" prefWidth="121.0" text="Produit" />
-            <TableColumn fx:id="clientcol" prefWidth="131.0" text="Client" />
+            <TableColumn fx:id="clientcol" prefWidth="131.0" text="Numéro Vente" />
             <TableColumn fx:id="quantitecol" prefWidth="71.0" text="Quantité" />
             <TableColumn fx:id="prixdeventecol" prefWidth="94.0" text="Prix de vente" />
             <TableColumn fx:id="datecol" prefWidth="131.0" text="Date de vente" />

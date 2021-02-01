@@ -6,12 +6,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="944.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ArticleController">
    <children>
@@ -76,5 +78,9 @@
       <Button fx:id="btnAjouter" layoutX="820.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="105.0" text="ajouter" />
       <Button fx:id="btnModifier" layoutX="823.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="39.0" prefWidth="100.0" text="modifier" />
       <Button fx:id="btnSupprimer" layoutX="821.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonAction" text="supprimer" />
+      <Button fx:id="addimg" layoutX="117.0" layoutY="587.0" mnemonicParsing="false" onAction="#imageselect" text="Button" />
+      <ImageView fx:id="imgview" fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="395.0" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="100.0" layoutX="156.0" layoutY="387.0" startX="-100.0" />
+      <Line endX="100.0" layoutX="156.0" layoutY="560.0" startX="-100.0" />
    </children>
 </AnchorPane>
